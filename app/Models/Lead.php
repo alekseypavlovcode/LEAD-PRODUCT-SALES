@@ -9,24 +9,24 @@ class Lead extends Model
 {
     protected $table = 'leads';
 
-    protected $primaryKey = 'id_leads';
+    protected $primaryKey = 'lead_id';
 
     protected $fillable = [
-        'tanggal',
-        'id_sales',
-        'id_produk',
-        'no_wa',
-        'nama_lead',
-        'kota'
+        'date',
+        'sale_id',
+        'product_id',
+        'phone',
+        'lead_name',
+        'city'
     ];
 
     public function sales()
     {
-        return $this->belongsTo(Sales::class, 'id_sales');
+        return $this->belongsTo(Sales::class, 'sale_id');
     }
 
-    public function produk()
+    public function product()
     {
-        return $this->belongsTo(Produk::class, 'id_produk');
+        return $this->belongsTo(Product::class, 'product_id');
     }
 }

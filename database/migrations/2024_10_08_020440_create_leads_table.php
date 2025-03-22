@@ -14,17 +14,17 @@ return new class extends Migration
     public function up()
 {
     Schema::create('leads', function (Blueprint $table) {
-        $table->id('id_leads');
-        $table->date('tanggal')->nullable();
-        $table->unsignedBigInteger('id_sales');
-        $table->unsignedBigInteger('id_produk');
-        $table->string('no_wa', 20);
-        $table->string('nama_lead', 50);
-        $table->string('kota', 50);
+        $table->id('lead_id');
+        $table->date('date')->nullable();
+        $table->unsignedBigInteger('sale_id');
+        $table->unsignedBigInteger('product_id');
+        $table->string('phone', 20);
+        $table->string('lead_name', 50);
+        $table->string('city', 50);
         $table->timestamps();
 
-        $table->foreign('id_sales')->references('id_sales')->on('sales')->onDelete('cascade');
-        $table->foreign('id_produk')->references('id_produk')->on('produk')->onDelete('cascade');
+        $table->foreign('sale_id')->references('sale_id')->on('sales')->onDelete('cascade');
+        $table->foreign('product_id')->references('product_id')->on('product')->onDelete('cascade');
     });
 }
 

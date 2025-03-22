@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Lead;
-use App\Models\Produk;
+use App\Models\Product;
 use App\Models\Sales;
 
 class LeadsController extends Controller
@@ -12,20 +12,20 @@ class LeadsController extends Controller
     public function create()
     {
         $sales = Sales::all();
-        $produk = Produk::all();
-        return view('leads.create', compact('sales', 'produk'));
+        $produk = Product::all();
+        return view('leads.create', compact('sales', 'product'));
     }
 
     public function store(Request $request)
     {
         echo "Function called";
         $validated = $request->validate([
-            'tanggal' => 'required|date',
-            'id_sales' => 'required',
-            'id_produk' => 'required',
-            'no_wa' => 'required|string|max:20',
-            'nama_lead' => 'required|string|max:50',
-            'kota' => 'required|string|max:50',
+            'date' => 'required|date',
+            'sale_id' => 'required',
+            'product_id' => 'required',
+            'phone' => 'required|string|max:20',
+            'lead_name' => 'required|string|max:50',
+            'city' => 'required|string|max:50',
         ]);
 
         Lead::create($validated);
@@ -37,23 +37,23 @@ class LeadsController extends Controller
     {
         $query = Lead::query();
 
-        if ($request->filled('tanggal')) {
-            $query->whereDate('tanggal', $request->tanggal);
+        if ($request->filled('date')) {
+            $query->whereDate('date', $request->date);
         }
 
-        if ($request->filled('id_sales')) {
-            $query->where('id_sales', $request->id_sales);
+        if ($request->filled('sale_id')) {
+            $query->where('sale_id', $request->sale_id);
         }
 
-        if ($request->filled('id_produk')) {
-            $query->where('id_produk', $request->id_produk);
+        if ($request->filled('product_id')) {
+            $query->where('product_id', $request->product_id);
         }
 
         $leads = $query->get();
 
         $sales = Sales::all();
-        $produk = Produk::all();
+        $produk = Product::all();
 
-        return view('leads.index', compact('leads', 'sales', 'produk'));
+        return view('leads.index', compact('leads', 'sales', 'product'));
     }
 }

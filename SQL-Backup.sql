@@ -39,25 +39,25 @@ CREATE TABLE `failed_jobs` (
 DROP TABLE IF EXISTS `leads`;
 
 CREATE TABLE `leads` (
-  `id_leads` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `tanggal` date DEFAULT NULL,
-  `id_sales` bigint(20) unsigned NOT NULL,
-  `id_produk` bigint(20) unsigned NOT NULL,
-  `no_wa` varchar(20) NOT NULL,
-  `nama_lead` varchar(50) NOT NULL,
-  `kota` varchar(50) NOT NULL,
+  `lead_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `date` date DEFAULT NULL,
+  `sale_id` bigint(20) unsigned NOT NULL,
+  `product_id` bigint(20) unsigned NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `lead_name` varchar(50) NOT NULL,
+  `city` varchar(50) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id_leads`),
-  KEY `leads_id_sales_foreign` (`id_sales`),
-  KEY `leads_id_produk_foreign` (`id_produk`),
-  CONSTRAINT `leads_id_produk_foreign` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`) ON DELETE CASCADE,
-  CONSTRAINT `leads_id_sales_foreign` FOREIGN KEY (`id_sales`) REFERENCES `sales` (`id_sales`) ON DELETE CASCADE
+  PRIMARY KEY (`lead_id`),
+  KEY `leads_id_sales_foreign` (`sale_id`),
+  KEY `leads_id_produk_foreign` (`product_id`),
+  CONSTRAINT `leads_id_produk_foreign` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE,
+  CONSTRAINT `leads_id_sales_foreign` FOREIGN KEY (`sale_id`) REFERENCES `sales` (`sale_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `leads` */
 
-insert  into `leads`(`id_leads`,`tanggal`,`id_sales`,`id_produk`,`no_wa`,`nama_lead`,`kota`,`created_at`,`updated_at`) values 
+insert  into `leads`(`lead_id`,`date`,`sale_id`,`product_id`,`phone`,`lead_name`,`city`,`created_at`,`updated_at`) values
 (3,'2024-10-09',2,3,'0898787878','Roihan','Malang','2024-10-08 06:24:44','2024-10-08 06:24:44'),
 (4,'2024-10-10',3,4,'08765655','Jose','Semarang','2024-10-08 06:25:24','2024-10-08 06:25:24'),
 (5,'2024-10-09',2,5,'08787654','Soleh','Sidoarjo','2024-10-08 06:26:39','2024-10-08 06:26:39');
@@ -75,7 +75,7 @@ CREATE TABLE `migrations` (
 
 /*Data for the table `migrations` */
 
-insert  into `migrations`(`id`,`migration`,`batch`) values 
+insert  into `migrations`(`id`,`migration`,`batch`) values
 (1,'2014_10_12_000000_create_users_table',1),
 (2,'2014_10_12_100000_create_password_resets_table',1),
 (3,'2019_08_19_000000_create_failed_jobs_table',1),
@@ -119,21 +119,21 @@ CREATE TABLE `personal_access_tokens` (
 
 /*Data for the table `personal_access_tokens` */
 
-/*Table structure for table `produk` */
+/*Table structure for table `product` */
 
-DROP TABLE IF EXISTS `produk`;
+DROP TABLE IF EXISTS `product`;
 
-CREATE TABLE `produk` (
-  `id_produk` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `nama_produk` varchar(50) NOT NULL,
+CREATE TABLE `product` (
+  `product_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `product_name` varchar(50) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id_produk`)
+  PRIMARY KEY (`product_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-/*Data for the table `produk` */
+/*Data for the table `product` */
 
-insert  into `produk`(`id_produk`,`nama_produk`,`created_at`,`updated_at`) values 
+insert  into `product`(`product_id`,`product_name`,`created_at`,`updated_at`) values
 (1,'Cipta Residence 2',NULL,NULL),
 (2,'The Rich',NULL,NULL),
 (3,'Namoramble City',NULL,NULL),
@@ -146,16 +146,16 @@ insert  into `produk`(`id_produk`,`nama_produk`,`created_at`,`updated_at`) value
 DROP TABLE IF EXISTS `sales`;
 
 CREATE TABLE `sales` (
-  `id_sales` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `sale_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `nama_sales` varchar(50) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id_sales`)
+  PRIMARY KEY (`sale_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `sales` */
 
-insert  into `sales`(`id_sales`,`nama_sales`,`created_at`,`updated_at`) values 
+insert  into `sales`(`sale_id`,`nama_sales`,`created_at`,`updated_at`) values
 (1,'sales 1',NULL,NULL),
 (2,'sales 2',NULL,NULL),
 (3,'sales 3',NULL,NULL);

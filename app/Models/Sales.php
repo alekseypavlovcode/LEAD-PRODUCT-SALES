@@ -10,5 +10,5 @@ class Sales extends Model
     use HasFactory;
 
     protected $table = 'sales';
-    protected $primaryKey = 'id_sales';
+    protected $primaryKey = 'sale_id';
 }

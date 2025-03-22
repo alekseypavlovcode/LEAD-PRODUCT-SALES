@@ -5,32 +5,32 @@
     <h2>Selamat Datang Di Tambah Leads</h2>
     <form action="{{ route('leads.store') }}" method="POST" class="bg-light p-4 rounded shadow">
         @csrf
-        
+
         <a href="{{ url('/leads') }}" class="btn btn-success">
             <i class="bi bi-box-arrow-left"></i> Kembali
         </a>
         <div class="row mb-3">
             <div class="col-md-4">
-                <label for="tanggal" class="form-label">Tanggal</label>
-                <input type="date" name="tanggal" id="tanggal" class="form-control" required>
+                <label for="date" class="form-label">Tanggal</label>
+                <input type="date" name="date" id="date" class="form-control" required>
             </div>
 
             <div class="col-md-4">
                 <label for="sales" class="form-label">Sales</label>
-                <select name="id_sales" id="sales" class="form-select" required>
+                <select name="sale_id" id="sales" class="form-select" required>
                     <option value="">--Pilih Sales--</option>
                     @foreach($sales as $s)
-                        <option value="{{ $s->id_sales }}">{{ $s->nama_sales }}</option>
+                        <option value="{{ $s->sale_id }}">{{ $s->nama_sales }}</option>
                     @endforeach
                 </select>
             </div>
 
             <div class="col-md-4">
-                <label for="produk" class="form-label">Produk</label>
-                <select name="id_produk" id="produk" class="form-select" required>
+                <label for="product" class="form-label">Produk</label>
+                <select name="product_id" id="product" class="form-select" required>
                     <option value="">--Pilih Produk--</option>
                     @foreach($produk as $p)
-                        <option value="{{ $p->id_produk }}">{{ $p->nama_produk }}</option>
+                        <option value="{{ $p->product_id }}">{{ $p->product_name }}</option>
                     @endforeach
                 </select>
             </div>
@@ -38,18 +38,18 @@
 
         <div class="row mb-3">
             <div class="col-md-4">
-                <label for="no_wa" class="form-label">No WhatsApp</label>
-                <input type="tel" name="no_wa" id="no_wa" class="form-control" required pattern="[0-9]*" maxlength="15" placeholder="Masukan No WA" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                <label for="phone" class="form-label">No WhatsApp</label>
+                <input type="tel" name="phone" id="phone" class="form-control" required pattern="[0-9]*" maxlength="15" placeholder="Masukan No WA" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
             </div>
 
             <div class="col-md-4">
-                <label for="nama_lead" class="form-label">Nama Lead</label>
-                <input type="text" name="nama_lead" placeholder="Masukan Nama Lead" id="nama_lead" class="form-control" required>
+                <label for="lead_name" class="form-label">Nama Lead</label>
+                <input type="text" name="lead_name" placeholder="Masukan Nama Lead" id="lead_name" class="form-control" required>
             </div>
 
             <div class="col-md-4">
-                <label for="kota" class="form-label">Kota</label>
-                <input type="text" name="kota" placeholder="Masukan Kota" id="kota" class="form-control" required>
+                <label for="city" class="form-label">Kota</label>
+                <input type="text" name="city" placeholder="Masukan Kota" id="city" class="form-control" required>
             </div>
         </div>
 

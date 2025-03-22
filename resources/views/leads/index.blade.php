@@ -13,16 +13,16 @@
         <form method="GET" action="{{ route('leads.index') }}" class="mb-3">
             <div class="row mb-3">
                 <div class="col-md-2">
-                    <label for="tanggal" class="form-label">Tanggal</label>
-                    <input type="date" name="tanggal" class="form-control" value="{{ request()->get('tanggal') }}">
+                    <label for="date" class="form-label">Tanggal</label>
+                    <input type="date" name="date" class="form-control" value="{{ request()->get('date') }}">
                 </div>
-                
+
                 <div class="col-md-2">
                     <label for="sales" class="form-label">Sales</label>
-                    <select name="id_sales" id="sales" class="form-select">
+                    <select name="sale_id" id="sales" class="form-select">
                         <option value="">--Pilih Sales--</option>
                         @foreach($sales as $s)
-                            <option value="{{ $s->id_sales }}" {{ request()->get('id_sales') == $s->id_sales ? 'selected' : '' }}>
+                            <option value="{{ $s->sale_id }}" {{ request()->get('sale_id') == $s->sale_id ? 'selected' : '' }}>
                                 {{ $s->nama_sales }}
                             </option>
                         @endforeach
@@ -30,12 +30,12 @@
                 </div>
 
                 <div class="col-md-2">
-                    <label for="produk" class="form-label">Produk</label>
-                    <select name="id_produk" id="produk" class="form-select">
+                    <label for="product" class="form-label">Produk</label>
+                    <select name="product_id" id="product" class="form-select">
                         <option value="">--Pilih Produk--</option>
                         @foreach($produk as $p)
-                            <option value="{{ $p->id_produk }}" {{ request()->get('id_produk') == $p->id_produk ? 'selected' : '' }}>
-                                {{ $p->nama_produk }}
+                            <option value="{{ $p->product_id }}" {{ request()->get('product_id') == $p->product_id ? 'selected' : '' }}>
+                                {{ $p->product_name }}
                             </option>
                         @endforeach
                     </select>
@@ -62,13 +62,13 @@
                 <tbody>
                     @foreach ($leads as $lead)
                         <tr>
-                            <td>{{ $lead->id_leads }}</td>
-                            <td>{{ \Carbon\Carbon::parse($lead->tanggal)->format('d/m/Y') }}</td>
+                            <td>{{ $lead->lead_id }}</td>
+                            <td>{{ \Carbon\Carbon::parse($lead->date)->format('d/m/Y') }}</td>
                             <td>{{ $lead->sales->nama_sales ?? 'Tidak Diketahui' }}</td>
-                            <td>{{ $lead->produk->nama_produk ?? 'Tidak Diketahui' }}</td>
-                            <td>{{ $lead->no_wa }}</td>
-                            <td>{{ $lead->nama_lead }}</td>
-                            <td>{{ $lead->kota }}</td>
+                            <td>{{ $lead->product->product_name ?? 'Tidak Diketahui' }}</td>
+                            <td>{{ $lead->phone }}</td>
+                            <td>{{ $lead->lead_name }}</td>
+                            <td>{{ $lead->city }}</td>
                         </tr>
                     @endforeach
                 </tbody>
